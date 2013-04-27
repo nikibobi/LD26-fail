@@ -13,6 +13,17 @@ namespace LD26.States
 {
     class LevelState : State
     {
+        private int currentLevel;
+
+        public int CurrentLevel
+        {
+            get { return currentLevel; }
+            set { 
+                currentLevel = value;
+                LoadLevel(currentLevel);
+            }
+        }
+
         public override void Init()
         {
             base.Init();
@@ -21,6 +32,7 @@ namespace LD26.States
 
         private void LoadLevel(int number)
         {
+            EntityManager.Instance.Clear();
             string data = ResourceManager.Instance.Get<string>("level" + number + ".txt");
             var x = 0;
             var y = 0;
@@ -47,6 +59,15 @@ namespace LD26.States
                 }
                 else if(t == '_')
                 {
+                    EntityManager.Instance.Add(EntityFactory.Floor(x, y));
+                }
+                else if (t == '%')
+                {
+                    EntityManager.Instance.Add(EntityFactory.InvisibleWall(x, y));
+                }
+                else if (t == 'E')
+                {
+                    EntityManager.Instance.Add(EntityFactory.LevelEnd(x, y));
                     EntityManager.Instance.Add(EntityFactory.Floor(x, y));
                 }
                 x++;

@@ -25,6 +25,8 @@ namespace LD26
             window.Closed += (sender, e) => window.Close();
             Global.Window = window;
 
+            Randomizer.Generator = new Random(42);
+
             var input = InputManager.Instance;
             input.Init();
 

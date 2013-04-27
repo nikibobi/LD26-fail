@@ -18,6 +18,8 @@ namespace LD26.Entitys.Components
             set { sprite.Texture = value; }
         }
 
+        public int Depth { get; set; }
+
         public override void Update(float dt)
         {
             base.Update(dt);

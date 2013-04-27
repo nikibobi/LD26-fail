@@ -81,9 +81,17 @@ namespace LD26.Managers
         public void Draw(RenderTarget rt, RenderStates rs)
         {
             //Draw
-            for (var i = entities.Count - 1; i >= 0; i--)
+            //for (var i = entities.Count - 1; i >= 0; i--)
+            //{
+            //    entities[i].Draw(rt, rs);
+            //}
+
+            foreach (var entity in entities
+                .Where(e=>e.HasComponent<SpriteComponent>())
+                .Select(e=>e.GetComponent<SpriteComponent>())
+                .OrderBy(s=>s.Depth))
             {
-                entities[i].Draw(rt, rs);
+                entity.Draw(rt, rs);
             }
         }
 

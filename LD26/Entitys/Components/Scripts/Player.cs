@@ -15,7 +15,7 @@ namespace LD26.Entitys.Components.Scripts
         public override void Update(float dt)
         {
             base.Update(dt);
-            const float speed = 400f;
+            const float speed = 600f;
             if(InputManager.Instance.IsKeyHold(Keyboard.Key.W))
             {
                 MyEntity.Transform.Position += new Vector2f(0, -speed * dt);
