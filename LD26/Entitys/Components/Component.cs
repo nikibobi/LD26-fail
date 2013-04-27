@@ -5,9 +5,9 @@ namespace LD26.Entitys.Components
 {
     class Component
     {
-        protected Entitys.Entity MyEntity { get; private set; }
+        public Entity MyEntity { get; private set; }
 
-        public virtual void Init(Entitys.Entity entity)
+        public virtual void Init(Entity entity)
         {
             MyEntity = entity;
         }

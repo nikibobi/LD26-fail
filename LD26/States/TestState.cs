@@ -16,7 +16,7 @@ namespace LD26.States
         public override void Init()
         {
             base.Init();
-            EntityManager.Instance.Add(EntityFactory.Box(new Vector2f(800, 200)));
+            EntityManager.Instance.Add(EntityFactory.Box(new Vector2f(800, -200)));
             EntityManager.Instance.Add(EntityFactory.Player());
         }
     }

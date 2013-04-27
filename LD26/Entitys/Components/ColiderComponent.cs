@@ -40,13 +40,13 @@ namespace LD26.Entitys.Components
             rt.Draw(box);
         }
 
-        public void Colide(Entity entity, FloatRect overlap)
+        public void Colide(ColiderComponent colider, FloatRect overlap)
         {
             var handler = Colides;
             if (handler != null)
-                handler(entity, overlap);
+                handler(colider, overlap);
         }
 
-        public delegate void OnColide(Entity entity, FloatRect overlap);
+        public delegate void OnColide(ColiderComponent colider, FloatRect overlap);
     }
 }

@@ -22,7 +22,6 @@ namespace LD26
             var contextSettings = new ContextSettings(0, 0, 4);
             RenderWindow window = new RenderWindow(videoMode, "Luda Diaria", Styles.Default, contextSettings);
             window.SetActive(true);
-            window.SetFramerateLimit(60);
             window.Closed += (sender, e) => window.Close();
             Global.Window = window;
 
@@ -32,7 +31,7 @@ namespace LD26
             StateManager.Instance.CurrentState = new LoadingState();
 
             var lastTick = DateTime.Now;
-            const float maxTimeStep = 0.500f;
+            const float maxTimeStep = 0.5f;
 
             while (window.IsOpen())
             {

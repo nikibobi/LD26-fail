@@ -49,10 +49,11 @@ namespace LD26.Managers
                     FloatRect overlap;
                     if (colider1.Hitbox.Intersects(colider2.Hitbox, out overlap))
                     {
-                        colider1.Colide(entity2, overlap);
+                        colider1.Colide(colider2, overlap);
                     }
                 }
             }
+
             //Update
             foreach (var entity in entities)
             {

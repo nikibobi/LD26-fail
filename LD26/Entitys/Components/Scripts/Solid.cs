@@ -13,19 +13,16 @@ namespace LD26.Entitys.Components.Scripts
 {
     class Solid : ScriptComponent
     {
+        private ColiderComponent myColider;
+
         public override void Init(Entity entity)
         {
             base.Init(entity);
             if(MyEntity.HasComponent<ColiderComponent>())
             {
-                MyEntity.GetComponent<ColiderComponent>().Colides += OnColide;
+                myColider = MyEntity.GetComponent<ColiderComponent>();
+                myColider.Colides += OnColide;
             }
-        }
-
-        public override void Update(float dt)
-        {
-            base.Update(dt);
-            
         }
 
         private RectangleShape rectangle;
@@ -37,23 +34,42 @@ namespace LD26.Entitys.Components.Scripts
                 rt.Draw(rectangle);
         }
 
-        private void OnColide(Entity entity, FloatRect overlap)
+        private void OnColide(ColiderComponent otherColider, FloatRect overlap)
         {
-            RectangleShape box = new RectangleShape(new Vector2f(overlap.Width, overlap.Height));
-            box.Position = new Vector2f(overlap.Left, overlap.Top);
-            box.OutlineThickness = 4;
-            box.OutlineColor = Color.Yellow;
-            box.FillColor = new Color(0, 0, 0, 0);
+            rectangle = new RectangleShape(new Vector2f(overlap.Width, overlap.Height));
+            rectangle.Position = new Vector2f(overlap.Left, overlap.Top);
+            rectangle.OutlineThickness = 4;
+            rectangle.OutlineColor = Color.Yellow;
+            rectangle.FillColor = new Color(0, 0, 0, 0);
             Console.WriteLine(overlap);
+
+            Vector2f x = new Vector2f();
+            Vector2f y = new Vector2f();
 
             if (overlap.Width < overlap.Height)
             {
-                entity.Transform.Position -= new Vector2f(overlap.Width, 0);
+                if (myColider.Hitbox.Left > otherColider.Hitbox.Left + otherColider.Hitbox.Width)
+                {
+                    x += new Vector2f(overlap.Width, 0);
+                }
+                else
+                {
+                    x -= new Vector2f(overlap.Width, 0);
+                }
             }
             else
             {
-                entity.Transform.Position -= new Vector2f(0, overlap.Height);
+                if (myColider.Hitbox.Top > otherColider.Hitbox.Top + otherColider.Hitbox.Height)
+                {
+                    y -= new Vector2f(0, overlap.Height);
+                }
+                else
+                {
+                    y += new Vector2f(0, overlap.Height);
+                }
             }
+
+            otherColider.MyEntity.Transform.Position += (x.X < y.Y ? x : y);
         }
     }
 }
