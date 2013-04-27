@@ -38,7 +38,7 @@ namespace LD26.Entitys.Components.Scripts
         {
             rectangle = new RectangleShape(new Vector2f(overlap.Width, overlap.Height));
             rectangle.Position = new Vector2f(overlap.Left, overlap.Top);
-            rectangle.OutlineThickness = 4;
+            rectangle.OutlineThickness = 1;
             rectangle.OutlineColor = Color.Yellow;
             rectangle.FillColor = new Color(0, 0, 0, 0);
             Console.WriteLine(overlap);

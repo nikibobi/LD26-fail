@@ -36,7 +36,7 @@ namespace LD26.States
             }
             else
             {
-                StateManager.Instance.CurrentState = new TestState();
+                StateManager.Instance.CurrentState = new LevelState();
             }
         }
 

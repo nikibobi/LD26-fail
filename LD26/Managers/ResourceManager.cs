@@ -29,6 +29,7 @@ namespace LD26.Managers
         private readonly Dictionary<string, Music> loadedMusic = new Dictionary<string, Music>();
         private readonly Dictionary<string, Sound> loadedSounds = new Dictionary<string, Sound>();
         private readonly Dictionary<string, SoundBuffer> loadedBuffers = new Dictionary<string, SoundBuffer>();
+        private readonly Dictionary<string, string> loadedFiles = new Dictionary<string, string>();
 
         public IEnumerable<float> LoadAll()
         {
@@ -37,7 +38,8 @@ namespace LD26.Managers
                 Load<Texture>(@"Resources\Textures"),
                 Load<Font>(@"Resources\Fonts"),
                 Load<Music>(@"Resources\Music"),
-                Load<Sound>(@"Resources\Sounds")
+                Load<Sound>(@"Resources\Sounds"),
+                Load<string>(@"Resources\Textfiles"),
             };
 
             float progress = 0;
@@ -94,6 +96,14 @@ namespace LD26.Managers
                         loadedSounds.Add(name, s);
                     }
                 }
+                else if(typeof(T) == typeof(string))
+                {
+                    using (StreamReader reader = new StreamReader(file))
+                    {
+                        var str = reader.ReadToEnd();
+                        loadedFiles.Add(name, str);
+                    }
+                }
                 else
                 {
                     throw new ArgumentException(String.Format("{0} is not a valid resource type", typeof(T)));
@@ -116,6 +126,8 @@ namespace LD26.Managers
                 return loadedSounds[name] as T;
             if (typeof(T) == typeof(SoundBuffer) && loadedBuffers.ContainsKey(name))
                 return loadedBuffers[name] as T;
+            if(typeof(T) == typeof(string) && loadedFiles.ContainsKey(name))
+                return loadedFiles[name] as T;
 
             throw new ArgumentException(String.Format("{0} is not a valid resource type", typeof(T)));
         }

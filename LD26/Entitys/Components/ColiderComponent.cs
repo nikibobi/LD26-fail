@@ -22,8 +22,8 @@ namespace LD26.Entitys.Components
         {
             base.Update(dt);
             Hitbox = new FloatRect(
-                MyEntity.Transform.Position.X, 
-                MyEntity.Transform.Position.Y, 
+                MyEntity.Transform.Position.X - MyEntity.Transform.Origin.X,
+                MyEntity.Transform.Position.Y - MyEntity.Transform.Origin.Y, 
                 Hitbox.Width, 
                 Hitbox.Height);
         }
@@ -34,7 +34,7 @@ namespace LD26.Entitys.Components
 
             RectangleShape box = new RectangleShape(new Vector2f(Hitbox.Width, Hitbox.Height));
             box.Position = new Vector2f(Hitbox.Left, Hitbox.Top);
-            box.OutlineThickness = 4;
+            box.OutlineThickness = 1;
             box.OutlineColor = Color.Red;
             box.FillColor = new Color(0, 0, 0, 0);
             rt.Draw(box);

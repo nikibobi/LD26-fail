@@ -48,7 +48,7 @@ namespace LD26.Managers
                     continue;
                 foreach (var entity2 in entities)
                 {
-                    if (entity1 == entity2 || (!(entity1.HasComponent<ColiderComponent>())))
+                    if (entity1 == entity2 || (!(entity2.HasComponent<ColiderComponent>())))
                         continue;
                     ColiderComponent colider1 = entity1.GetComponent<ColiderComponent>();
                     ColiderComponent colider2 = entity2.GetComponent<ColiderComponent>();
