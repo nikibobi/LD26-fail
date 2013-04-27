@@ -25,7 +25,7 @@ namespace LD26.Entitys.Components
             set { transform.Position = value; }
         }
 
-         public Vector2f Origin
+        public Vector2f Origin
         {
             get { return transform.Origin; }
             set { transform.Origin = value; }

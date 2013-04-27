@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using LD26.States;
 using SFML.Window;
 using SFML.Graphics;
 using SFML.Audio;
@@ -20,8 +21,6 @@ namespace LD26
             var contextSettings = new ContextSettings(0, 0, 4);
             RenderWindow window = new RenderWindow(videoMode, "Luda Diaria", Styles.Default, contextSettings);
 
-
-
             var input = InputManager.Instance;
             input.Init(window);
 
@@ -34,17 +33,14 @@ namespace LD26
                 //Console.Clear();
             }
 
-            //test
-            Entity player = new Entity();
-            var sprite = new SpriteComponent(resources.Get<Texture>("something.png"));
-            player.AddComponent(sprite);
-            player.Init();
-            //test
-
             window.SetActive(true);
+            window.SetFramerateLimit(60);
             window.Closed += (sender, e) => window.Close();
             var lastTick = DateTime.Now;
-            const float maxTimeStep = 0.500f;     
+            const float maxTimeStep = 0.500f;
+
+            StateManager.Instance.CurrentState = new TestState();
+            StateManager.Instance.CurrentState.Init();
 
             while (window.IsOpen())
             {
@@ -62,17 +58,13 @@ namespace LD26
                 while (dt > 0)
                 {
                     //---UPDATE
-                    Console.WriteLine(dt);
-                    player.Update(dt < maxTimeStep ? dt : maxTimeStep);
-                    player.Transform.Position += new Vector2f(50f * dt, 0);
-                    
-
+                    var deltatTime = dt < maxTimeStep ? dt : maxTimeStep;
+                    StateManager.Instance.CurrentState.Update(deltatTime);
                     dt -= maxTimeStep;
                 }
                 //---DRAW
 
-                player.Draw(window, RenderStates.Default);
-
+                StateManager.Instance.CurrentState.Draw(window, RenderStates.Default);
                 window.Display();
             }
         }

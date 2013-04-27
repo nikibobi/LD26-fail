@@ -55,17 +55,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entitys\Components\ColiderComponent.cs" />
     <Compile Include="Entitys\Components\Component.cs" />
     <Compile Include="Entitys\Components\ScriptComponent.cs" />
+    <Compile Include="Entitys\Components\Scripts\Player.cs" />
     <Compile Include="Entitys\Components\SpriteComponent.cs" />
     <Compile Include="Entitys\Components\TransformComponent.cs" />
     <Compile Include="Entitys\Entity.cs" />
+    <Compile Include="Entitys\EntityFactory.cs" />
+    <Compile Include="Managers\EntityManager.cs" />
     <Compile Include="Managers\InputManager.cs" />
     <Compile Include="Managers\ResourceManager.cs" />
+    <Compile Include="Managers\StateManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="States\State.cs" />
+    <Compile Include="States\TestState.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

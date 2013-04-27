@@ -8,19 +8,27 @@ namespace LD26.Entitys
 {
     class Entity
     {
-        private readonly List<Component> components; 
+        private readonly List<Component> components;
 
         public Entity()
         {
             components = new List<Component>();
         }
 
+        public bool Initialized { get; protected set; }
+        public bool Destroying { get; protected set; }
         public TransformComponent Transform { get; private set; }
 
         public void Init()
         {
             Transform = new TransformComponent();
             components.Add(Transform);
+            InitComponents();
+            Initialized = true;
+        }
+
+        protected void InitComponents()
+        {
             foreach (var component in components)
             {
                 component.Init(this);
@@ -45,10 +53,12 @@ namespace LD26.Entitys
 
         public void Destroy()
         {
-            foreach (var component in components)
+            for (var i = components.Count - 1; i >= 0; i--)
             {
-                component.Destroy();
+                components[i].Destroy();
+                components.Remove(components[i]);
             }
+            Destroying = true;
         }
 
         public void AddComponent<T>(T component) where T : Component
