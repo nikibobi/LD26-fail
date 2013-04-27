@@ -27,12 +27,10 @@ namespace LD26.States
 
             foreach (char t in data)
             {
-                Console.Write(t);
                 if(t == '\n')
                 {
                     x = -1;
                     y++;
-                    Console.WriteLine();
                 }
                 else if(t == 'R')
                 {
@@ -47,7 +45,7 @@ namespace LD26.States
                     EntityManager.Instance.Add(camera);
                     EntityManager.Instance.Add(EntityFactory.Floor(x, y));
                 }
-                else
+                else if(t == '_')
                 {
                     EntityManager.Instance.Add(EntityFactory.Floor(x, y));
                 }

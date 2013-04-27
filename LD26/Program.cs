@@ -39,7 +39,7 @@ namespace LD26
                 lastTick = DateTime.Now;
 
                 window.DispatchEvents();
-                window.Clear(new Color(97, 14, 14));
+                window.Clear(Color.Black);
 
                 if (input.IsKeyPressed(Keyboard.Key.Escape))
                 {

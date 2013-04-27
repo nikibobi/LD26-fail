@@ -22,7 +22,8 @@ namespace LD26.Entitys.Components.Scripts
         {
             base.Init(entity);
             camera = new View(Target.Transform.Position, Global.Screen);
-            camera.Zoom(3f);
+            camera.Zoom(2f);
+            //camera.Rotate(45f);
         }
 
         public override void Update(float dt)

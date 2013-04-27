@@ -1,6 +1,8 @@
-RRRRRR
-R____R
-RS___R
-R____R
-R____R
-RRRRRR
+RRRRRR__R
+R____R__R
+RS______R
+R____R__R
+R____R__R
+RRRRRR__R
+________R
+RRRRRRRRR
