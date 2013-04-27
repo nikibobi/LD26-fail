@@ -7,6 +7,7 @@ using LD26.Entitys;
 using LD26.Entitys.Components;
 using LD26.Entitys.Components.Scripts;
 using LD26.Managers;
+using SFML.Window;
 
 namespace LD26.States
 {
@@ -15,6 +16,7 @@ namespace LD26.States
         public override void Init()
         {
             base.Init();
+            EntityManager.Instance.Add(EntityFactory.Box(new Vector2f(800, 200)));
             EntityManager.Instance.Add(EntityFactory.Player());
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using SFML.Window;
+using LD26.Helpers;
 
 namespace LD26.Managers
 {
@@ -28,8 +29,9 @@ namespace LD26.Managers
 
         public Vector2f MousePosition { get; private set; }
 
-        public void Init(Window window)
+        public void Init()
         {
+            var window = Global.Window;
             window.MouseMoved += (sender, e) =>
             {
                 var pos = Mouse.GetPosition(window);

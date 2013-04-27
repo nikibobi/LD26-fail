@@ -10,6 +10,7 @@ using SFML.Audio;
 using LD26.Managers;
 using LD26.Entitys;
 using LD26.Entitys.Components;
+using LD26.Helpers;
 
 namespace LD26
 {
@@ -20,27 +21,18 @@ namespace LD26
             var videoMode = new VideoMode(1000, 700);
             var contextSettings = new ContextSettings(0, 0, 4);
             RenderWindow window = new RenderWindow(videoMode, "Luda Diaria", Styles.Default, contextSettings);
-
-            var input = InputManager.Instance;
-            input.Init(window);
-
-            //load the shit out of it
-            var resources = ResourceManager.Instance;
-            var loader = resources.LoadAll().GetEnumerator();
-            while (loader.MoveNext())
-            {
-                Console.WriteLine("Lodaing {0:0.##}%", loader.Current * 100);
-                //Console.Clear();
-            }
-
             window.SetActive(true);
             window.SetFramerateLimit(60);
             window.Closed += (sender, e) => window.Close();
+            Global.Window = window;
+
+            var input = InputManager.Instance;
+            input.Init();
+
+            StateManager.Instance.CurrentState = new LoadingState();
+
             var lastTick = DateTime.Now;
             const float maxTimeStep = 0.500f;
-
-            StateManager.Instance.CurrentState = new TestState();
-            StateManager.Instance.CurrentState.Init();
 
             while (window.IsOpen())
             {
@@ -48,7 +40,7 @@ namespace LD26
                 lastTick = DateTime.Now;
 
                 window.DispatchEvents();
-                window.Clear(Color.Yellow);
+                window.Clear(Color.Black);
 
                 if (input.IsKeyPressed(Keyboard.Key.Escape))
                 {

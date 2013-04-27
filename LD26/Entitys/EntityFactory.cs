@@ -6,6 +6,7 @@ using LD26.Entitys.Components;
 using LD26.Entitys.Components.Scripts;
 using LD26.Managers;
 using SFML.Graphics;
+using SFML.Window;
 
 namespace LD26.Entitys
 {
@@ -23,6 +24,21 @@ namespace LD26.Entitys
             entity.AddComponent(sprite);
             entity.AddComponent(colider);
             entity.AddComponent(player);
+            return entity;
+        }
+
+        public static Entity Box(Vector2f position)
+        {
+            var entity = new Entity();
+            entity.Transform.Position = position;
+            var texture = ResourceManager.Instance.Get<Texture>("something.png");
+            var sprite = new SpriteComponent(texture);
+            var hitbox = new FloatRect(0, 0, texture.Size.X, texture.Size.Y);
+            var colider = new ColiderComponent(hitbox);
+            var box = new Solid();
+            entity.AddComponent(sprite);
+            entity.AddComponent(colider);
+            entity.AddComponent(box);
             return entity;
         }
     }

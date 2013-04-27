@@ -34,7 +34,9 @@ namespace LD26.Managers
             }
             set
             {
-                states.Push(value);
+                var state = value;
+                state.Init();
+                states.Push(state);
             }
         }
 

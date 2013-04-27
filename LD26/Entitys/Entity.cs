@@ -13,6 +13,8 @@ namespace LD26.Entitys
         public Entity()
         {
             components = new List<Component>();
+            Transform = new TransformComponent();
+            components.Add(Transform);
         }
 
         public bool Initialized { get; protected set; }
@@ -21,18 +23,11 @@ namespace LD26.Entitys
 
         public void Init()
         {
-            Transform = new TransformComponent();
-            components.Add(Transform);
-            InitComponents();
-            Initialized = true;
-        }
-
-        protected void InitComponents()
-        {
             foreach (var component in components)
             {
                 component.Init(this);
             }
+            Initialized = true;
         }
 
         public void Update(float dt)
