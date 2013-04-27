@@ -16,7 +16,7 @@ namespace LD26.Entitys
         public static Entity Player()
         {
             var entity = new Entity();
-            var texture = ResourceManager.Instance.Get<Texture>("something.png");
+            var texture = ResourceManager.Instance.Get<Texture>("player.png");
             var sprite = new SpriteComponent(texture);
             var hitbox = new FloatRect(0, 0, texture.Size.X, texture.Size.Y);
             var colider = new ColiderComponent(hitbox);

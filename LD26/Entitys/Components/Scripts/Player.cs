@@ -15,21 +15,22 @@ namespace LD26.Entitys.Components.Scripts
         public override void Update(float dt)
         {
             base.Update(dt);
+            const float speed = 400f;
             if(InputManager.Instance.IsKeyHold(Keyboard.Key.W))
             {
-                MyEntity.Transform.Position += new Vector2f(0, -300 * dt);
+                MyEntity.Transform.Position += new Vector2f(0, -speed * dt);
             }
             if (InputManager.Instance.IsKeyHold(Keyboard.Key.A))
             {
-                MyEntity.Transform.Position += new Vector2f(-300 * dt, 0);
+                MyEntity.Transform.Position += new Vector2f(-speed * dt, 0);
             }
             if (InputManager.Instance.IsKeyHold(Keyboard.Key.S))
             {
-                MyEntity.Transform.Position += new Vector2f(0, 300 * dt);
+                MyEntity.Transform.Position += new Vector2f(0, speed * dt);
             }
             if (InputManager.Instance.IsKeyHold(Keyboard.Key.D))
             {
-                MyEntity.Transform.Position += new Vector2f(300 * dt, 0);
+                MyEntity.Transform.Position += new Vector2f(speed * dt, 0);
             }
         }
     }

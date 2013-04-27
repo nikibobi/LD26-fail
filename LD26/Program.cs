@@ -21,6 +21,7 @@ namespace LD26
             var videoMode = new VideoMode(1000, 700);
             var contextSettings = new ContextSettings(0, 0, 4);
             RenderWindow window = new RenderWindow(videoMode, "Luda Diaria", Styles.Default, contextSettings);
+            window.SetFramerateLimit(60);
             window.SetActive(true);
             window.Closed += (sender, e) => window.Close();
             Global.Window = window;

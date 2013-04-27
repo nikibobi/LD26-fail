@@ -35,6 +35,12 @@ namespace LD26.Managers
 
         public void Update(float dt)
         {
+            //Update
+            foreach (var entity in entities)
+            {
+                entity.Update(dt);
+            }
+
             //Check for colisions
             foreach (var entity1 in entities)
             {
@@ -52,12 +58,6 @@ namespace LD26.Managers
                         colider1.Colide(colider2, overlap);
                     }
                 }
-            }
-
-            //Update
-            foreach (var entity in entities)
-            {
-                entity.Update(dt);
             }
 
             //Add entries and Init them if they are not
